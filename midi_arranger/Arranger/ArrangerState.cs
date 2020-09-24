@@ -17,5 +17,14 @@ namespace midi_arranger.Arranger
         public int CurrentVariation { get => _currentVariation; set => _currentVariation = value; }
         
         public List<Style> Styles { get => _styles; set => _styles = value; }
+
+        public void UpdateStyleState(int index) 
+        {
+            this._currentStyle = index;
+        }
+        public void UpdateVariationState(int index)
+        {
+            this._currentVariation = index;
+        }
     }
 }

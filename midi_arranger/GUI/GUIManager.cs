@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,25 +30,32 @@ namespace midi_arranger
         const double BLOCKS_PADDING = 0.1;
         const double RIGHT_LEFT_MARGINS = 0.01;
 
-        static Color EMPTY_VAR_COLOR = Color.FromArgb(10, 20, 20);
-        static Color FONT_COLOR  = Color.White;
-        static Color STL_COLOR = Color.FromArgb(8, 15, 15);
+        Color EMPTY_VAR_COLOR = Color.Black;
+        Color INTRO_VAR_COLOR = Color.FromArgb(1, 158, 255);
+        Color LOOP_VAR_COLOR = Color.FromArgb(255, 219, 35);
+        Color FILL_VAR_COLOR = Color.FromArgb(0, 229, 90);
+        Color ENDING_VAR_COLOR = Color.FromArgb(255, 58, 73);
+        Color FONT_COLOR  = Color.White;
+        Color STL_COLOR = Color.Black;
+        Color STL_CURRENT_COLOR = Color.FromArgb(1, 158, 255);
 
-        static bool guiInialized = false;
+        bool guiInialized = false;
 
-        public static void Resize(MainForm mainForm)
+        public void Resize(MainForm mainForm)
         {
-            if (!guiInialized) 
+            if (!guiInialized)
             {
                 initGUI(mainForm);
             }
-            else 
+            else
             {
                 resizeGUI(mainForm);
             }
         }
-        
-        private static Point getVarButtonSize(MainForm mainForm, double padding) 
+
+        private MainForm _mainForm = null;
+
+        private Point getVarButtonSize(MainForm mainForm, double padding) 
         {
             int width = Convert.ToInt32(Convert.ToDouble(mainForm.Width) / VAR_NUM_COLUMNS);
             width -= Convert.ToInt32(Convert.ToDouble(mainForm.Width) * RIGHT_LEFT_MARGINS * 2.0F / VAR_NUM_COLUMNS);
@@ -59,7 +67,7 @@ namespace midi_arranger
             return new Point(witdh_with_padding, height_with_padding);
         }
 
-        private static Point getVarButtonPosition(MainForm mainForm, int buttonIndex)
+        private Point getVarButtonPosition(MainForm mainForm, int buttonIndex)
         {
             Point buttonSize = getVarButtonSize(mainForm, 0.0);
             int buttonsCount = Convert.ToInt32(VAR_NUM_COLUMNS * VAR_NUM_ROWS);
@@ -76,7 +84,7 @@ namespace midi_arranger
             return new Point(x, y);
         }
 
-        private static Point getStyleButtonSize(MainForm mainForm, double padding)
+        private Point getStyleButtonSize(MainForm mainForm, double padding)
         {
             int width = Convert.ToInt32(Convert.ToDouble(mainForm.Width) / STL_NUM_COLUMNS);
             width -= Convert.ToInt32(Convert.ToDouble(mainForm.Width) * RIGHT_LEFT_MARGINS * 2.0F / STL_NUM_COLUMNS);
@@ -89,7 +97,7 @@ namespace midi_arranger
             return new Point(witdh_with_padding, height_with_padding);
         }
 
-        private static Point getStyleButtonPosition(MainForm mainForm, int buttonIndex)
+        private Point getStyleButtonPosition(MainForm mainForm, int buttonIndex)
         {
             Point buttonSize = getStyleButtonSize(mainForm, 0.0);
             int buttonsCount = Convert.ToInt32(STL_NUM_COLUMNS * STL_NUM_ROWS);
@@ -111,8 +119,9 @@ namespace midi_arranger
             return new Point(x, y);
         }
 
-        private static void initGUI(MainForm mainForm) 
+        void initGUI(MainForm mainForm) 
         {
+            this._mainForm = mainForm;
             guiInialized = true;
             Point buttonSize = getVarButtonSize(mainForm, VAR_BUTTON_PADDING);
 
@@ -129,6 +138,7 @@ namespace midi_arranger
                 varButton.ForeColor = FONT_COLOR;
                 varButton.BackColor = EMPTY_VAR_COLOR;
                 varButton.FlatStyle = FlatStyle.Flat;
+                varButton.Click += VarButton_Click;
                 mainForm.Controls.Add(varButton);
             }
             
@@ -153,11 +163,16 @@ namespace midi_arranger
                 styleButton.ForeColor = FONT_COLOR;
                 styleButton.BackColor = STL_COLOR;
                 styleButton.FlatStyle = FlatStyle.Flat;
+                styleButton.Click += StyleButton_Click;
                 mainForm.Controls.Add(styleButton);
             }
+
+            Button curStyleButton = (Button)_mainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + 0, false)[0];
+            curStyleButton.BackColor = STL_CURRENT_COLOR;
+
         }
 
-        private static void resizeGUI(MainForm mainForm)
+        private void resizeGUI(MainForm mainForm)
         {
             guiInialized = true;
             Point buttonSize = getVarButtonSize(mainForm, VAR_BUTTON_PADDING);
@@ -184,6 +199,23 @@ namespace midi_arranger
                 styleButton.Font = new System.Drawing.Font(FONT_FAMILY, fontSize, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             }
 
+        }
+
+        private void StyleButton_Click(object sender, EventArgs e)
+        {
+            int id =Convert.ToInt32(((Button)sender).Name.Replace(STL_BUTTON_NAME_PREFIX, ""));
+            int prevId = this._mainForm.ArrangerState.CurrentStyle;
+            Button prevStyleButton = (Button)_mainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + prevId.ToString(), false)[0];
+            prevStyleButton.BackColor = STL_COLOR;
+            Button curStyleButton = (Button)_mainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + id.ToString(), false)[0];
+            curStyleButton.BackColor = STL_CURRENT_COLOR;
+            this._mainForm.ArrangerState.UpdateStyleState(id);
+        }
+
+        private void VarButton_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(((Button)sender).Name.Replace(VAR_BUTTON_NAME_PREFIX, ""));
+            this._mainForm.ArrangerState.UpdateVariationState(id);
         }
     }
 }

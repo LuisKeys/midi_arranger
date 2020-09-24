@@ -19,10 +19,11 @@ namespace midi_arranger
             {
                 ArrangerState arrangerState = new ArrangerState();
                 StylesManager stylesManager = new StylesManager();
+                GUIManager guiManager = new GUIManager();
                 stylesManager.ReadStyles(arrangerState);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm(arrangerState));
+                Application.Run(new MainForm(arrangerState, guiManager));
             }
             catch
             {

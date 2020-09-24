@@ -13,19 +13,24 @@ namespace midi_arranger
 {
     public partial class MainForm : Form
     {
+        private GUIManager _guiManager;
         private ArrangerState _arrangerState;
 
         public ArrangerState ArrangerState { get => _arrangerState; set => _arrangerState = value; }
+        
+        public GUIManager GUIManager { get => _guiManager; set => _guiManager = value; }
 
-        public MainForm(ArrangerState arrangerState)
+        public MainForm(ArrangerState arrangerState, GUIManager guiManager)
         {
             this.ArrangerState = arrangerState;
+            this.GUIManager = guiManager;
             InitializeComponent();
+            this.GUIManager.Resize(this);
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            GUIManager.Resize(this);
+            this.GUIManager.Resize(this);
         }
 
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
