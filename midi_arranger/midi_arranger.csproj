@@ -46,6 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Arranger\ArrangerState.cs" />
+    <Compile Include="Arranger\Style.cs" />
+    <Compile Include="Arranger\StyleReader.cs" />
+    <Compile Include="Arranger\StylesManager.cs" />
+    <Compile Include="Arranger\Variation.cs" />
     <Compile Include="GUI\GUIManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

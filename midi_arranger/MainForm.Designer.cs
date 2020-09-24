@@ -29,6 +29,7 @@ namespace midi_arranger
         /// </summary>
         private void InitializeComponent()
         {
+            this.SuspendLayout();
             // 
             // MainForm
             // 
@@ -37,14 +38,15 @@ namespace midi_arranger
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
-
         }
 
         #endregion

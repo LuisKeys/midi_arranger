@@ -1,4 +1,5 @@
-﻿using System;
+﻿using midi_arranger.Arranger;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,19 @@ namespace midi_arranger
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            try
+            {
+                ArrangerState arrangerState = new ArrangerState();
+                StylesManager stylesManager = new StylesManager();
+                stylesManager.ReadStyles(arrangerState);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm(arrangerState));
+            }
+            catch
+            {
+                Application.Exit();
+            }
         }
     }
 }
