@@ -11,6 +11,7 @@ namespace midi_arranger.Arranger
         {
             try
             {
+                arrangerState.Chords.Clear();
                 string chordsFile = this.getChordsFile();
                 string line = "";
                 StreamReader reader = new StreamReader(chordsFile);
@@ -23,6 +24,17 @@ namespace midi_arranger.Arranger
                     }
                     else 
                     {
+                        Chord chord = new Chord();
+                        string[] values = line.Split(',');
+                        chord.Name = values[0].Trim();
+                        string intervals = values[1].Trim();
+                        string [] intervalsValues = intervals.Split(' ');
+                        foreach (string intervalValue in intervalsValues) 
+                        {
+                            chord.Intevals.Add(Convert.ToInt32(intervalValue));
+                        }
+
+                        arrangerState.Chords.Add(chord);
                         Console.WriteLine(line);
                     }
                 }

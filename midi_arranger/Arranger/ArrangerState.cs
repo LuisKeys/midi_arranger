@@ -32,6 +32,15 @@ namespace midi_arranger.Arranger
                 int noteNumber = ((NoteOffEvent)midiEvent).NoteNumber;
                 this.VirtualKeyboard[noteNumber] = 0;
             }
+
+            if (midiEvent.EventType == MidiEventType.NoteOn ||
+                midiEvent.EventType == MidiEventType.NoteOff)
+            {
+                Chord chord = new Chord();
+                chord.GetName(this);
+            }
+            
+
         }
     }
 }
