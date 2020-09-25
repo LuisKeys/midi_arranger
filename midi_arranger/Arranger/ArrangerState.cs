@@ -10,13 +10,13 @@ namespace midi_arranger.Arranger
         private int _currentVariation = 0;
         private List<Style> _styles = new List<Style>();
         private int[] _virtualKeyboard = new int[127];
+        List<Chord> _chords = new List<Chord>();
 
         public int CurrentStyle { get => _currentStyle; set => _currentStyle = value; }
-
         public int CurrentVariation { get => _currentVariation; set => _currentVariation = value; }
-        
         public List<Style> Styles { get => _styles; set => _styles = value; }
         public int[] VirtualKeyboard { get => _virtualKeyboard; set => _virtualKeyboard = value; }
+        public List<Chord> Chords { get => _chords; set => _chords = value; }
 
         public void UpdateVirtualKeyboard(MidiEvent midiEvent) 
         {

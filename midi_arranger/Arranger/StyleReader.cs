@@ -61,7 +61,7 @@ namespace midi_arranger.Arranger
 
         private string getStylesFolder() 
         {
-            string stylePath = Path.Combine(Application.StartupPath, "Styles");
+            string stylePath = Path.Combine(Application.StartupPath, "Data\\Styles");
             if (!Directory.Exists(stylePath)) 
             {
                 Directory.CreateDirectory(stylePath);

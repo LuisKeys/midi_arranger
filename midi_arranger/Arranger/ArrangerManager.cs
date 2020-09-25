@@ -28,6 +28,17 @@ namespace midi_arranger.Arranger
                 MessageBox.Show("Error opening MIDI ports: " + e.Message);
                 throw;
             }
+
+            try
+            {
+                ChordReader chordReader = new ChordReader();
+                chordReader.ReadChords(this.ArrangerState);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error reading chords file: " + e.Message);
+                throw;
+            }
         }
 
         public void closeDevices()

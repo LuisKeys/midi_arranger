@@ -1,7 +1,9 @@
 ﻿using midi_arranger.Arranger;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +19,7 @@ namespace midi_arranger
         {
             try
             {
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\chords.csv");
                 ArrangerState arrangerState = new ArrangerState();
                 ArrangerManager arrangerManager = new ArrangerManager(arrangerState);
                 StylesManager stylesManager = new StylesManager();
