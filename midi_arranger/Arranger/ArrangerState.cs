@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Melanchall.DryWetMidi.Core;
 
 namespace midi_arranger.Arranger
 {
@@ -11,20 +9,29 @@ namespace midi_arranger.Arranger
         private int _currentStyle = 0;
         private int _currentVariation = 0;
         private List<Style> _styles = new List<Style>();
+        private int[] _virtualKeyboard = new int[127];
 
         public int CurrentStyle { get => _currentStyle; set => _currentStyle = value; }
 
         public int CurrentVariation { get => _currentVariation; set => _currentVariation = value; }
         
         public List<Style> Styles { get => _styles; set => _styles = value; }
+        public int[] VirtualKeyboard { get => _virtualKeyboard; set => _virtualKeyboard = value; }
 
-        public void UpdateStyleState(int index) 
+        public void UpdateVirtualKeyboard(MidiEvent midiEvent) 
         {
-            this._currentStyle = index;
-        }
-        public void UpdateVariationState(int index)
-        {
-            this._currentVariation = index;
+            if(midiEvent.EventType == MidiEventType.NoteOn) 
+            {
+                int noteNumber = ((NoteOnEvent)midiEvent).NoteNumber;
+                int velocity = ((NoteOnEvent)midiEvent).Velocity;
+                this.VirtualKeyboard[noteNumber] = velocity;
+            }
+
+            if (midiEvent.EventType == MidiEventType.NoteOff)
+            {
+                int noteNumber = ((NoteOffEvent)midiEvent).NoteNumber;
+                this.VirtualKeyboard[noteNumber] = 0;
+            }
         }
     }
 }

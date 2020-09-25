@@ -55,6 +55,8 @@ namespace midi_arranger
 
         private MainForm _mainForm = null;
 
+        public MainForm MainForm { get => _mainForm; set => _mainForm = value; }
+
         private Point getVarButtonSize(MainForm mainForm, double padding) 
         {
             int width = Convert.ToInt32(Convert.ToDouble(mainForm.Width) / VAR_NUM_COLUMNS);
@@ -121,7 +123,7 @@ namespace midi_arranger
 
         void initGUI(MainForm mainForm) 
         {
-            this._mainForm = mainForm;
+            this.MainForm = mainForm;
             guiInialized = true;
             Point buttonSize = getVarButtonSize(mainForm, VAR_BUTTON_PADDING);
 
@@ -167,7 +169,7 @@ namespace midi_arranger
                 mainForm.Controls.Add(styleButton);
             }
 
-            Button curStyleButton = (Button)_mainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + 0, false)[0];
+            Button curStyleButton = (Button)MainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + 0, false)[0];
             curStyleButton.BackColor = STL_CURRENT_COLOR;
 
         }
@@ -204,18 +206,18 @@ namespace midi_arranger
         private void StyleButton_Click(object sender, EventArgs e)
         {
             int id =Convert.ToInt32(((Button)sender).Name.Replace(STL_BUTTON_NAME_PREFIX, ""));
-            int prevId = this._mainForm.ArrangerState.CurrentStyle;
-            Button prevStyleButton = (Button)_mainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + prevId.ToString(), false)[0];
+            int prevId = this.MainForm.ArrangerState.CurrentStyle;
+            Button prevStyleButton = (Button)MainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + prevId.ToString(), false)[0];
             prevStyleButton.BackColor = STL_COLOR;
-            Button curStyleButton = (Button)_mainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + id.ToString(), false)[0];
+            Button curStyleButton = (Button)MainForm.Controls.Find(STL_BUTTON_NAME_PREFIX + id.ToString(), false)[0];
             curStyleButton.BackColor = STL_CURRENT_COLOR;
-            this._mainForm.ArrangerState.UpdateStyleState(id);
+            this.MainForm.ArrangerManager.UpdateStyleState(id);
         }
 
         private void VarButton_Click(object sender, EventArgs e)
         {
             int id = Convert.ToInt32(((Button)sender).Name.Replace(VAR_BUTTON_NAME_PREFIX, ""));
-            this._mainForm.ArrangerState.UpdateVariationState(id);
+            this.MainForm.ArrangerManager.UpdateVariationState(id);
         }
     }
 }

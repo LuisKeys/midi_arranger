@@ -18,15 +18,17 @@ namespace midi_arranger
             try
             {
                 ArrangerState arrangerState = new ArrangerState();
+                ArrangerManager arrangerManager = new ArrangerManager(arrangerState);
                 StylesManager stylesManager = new StylesManager();
                 GUIManager guiManager = new GUIManager();
                 stylesManager.ReadStyles(arrangerState);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm(arrangerState, guiManager));
+                Application.Run(new MainForm(arrangerManager, guiManager));
             }
-            catch
+            catch(Exception e)
             {
+                MessageBox.Show("Fatal error: " + e.Message);
                 Application.Exit();
             }
         }
