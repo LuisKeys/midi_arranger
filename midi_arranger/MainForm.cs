@@ -1,4 +1,5 @@
 ﻿using midi_arranger.Arranger;
+using midi_arranger.GUI;
 using System;
 using System.Windows.Forms;
 

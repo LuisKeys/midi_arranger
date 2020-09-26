@@ -29,7 +29,6 @@ namespace midi_arranger
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
             // 
             // MainForm
             // 
@@ -47,10 +46,10 @@ namespace midi_arranger
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
+
         }
 
         #endregion
-
     }
 }
 

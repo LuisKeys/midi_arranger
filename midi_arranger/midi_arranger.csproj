@@ -58,7 +58,11 @@
     <Compile Include="Arranger\StyleReader.cs" />
     <Compile Include="Arranger\StylesManager.cs" />
     <Compile Include="Arranger\Variation.cs" />
+    <Compile Include="GUI\GUIConstants.cs" />
     <Compile Include="GUI\GUIManager.cs" />
+    <Compile Include="GUI\GUIStyltesButtonsGrid.cs" />
+    <Compile Include="GUI\GUIMidArea.cs" />
+    <Compile Include="GUI\GUIVarButtonsGrid.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
