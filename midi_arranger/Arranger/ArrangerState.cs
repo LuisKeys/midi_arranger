@@ -37,7 +37,7 @@ namespace midi_arranger.Arranger
                 midiEvent.EventType == MidiEventType.NoteOff)
             {
                 Chord chord = new Chord();
-                chord.GetName(this);
+                Console.WriteLine(chord.GetName(this));
             }
             
 

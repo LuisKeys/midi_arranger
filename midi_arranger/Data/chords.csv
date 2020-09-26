@@ -1,6 +1,10 @@
 Names,Intervals
 maj,0 4 7
+maj 1 inv,0 3 8
+maj 2 inv,0 5 9
 min,0 3 7
+min 1 inv,0 4 9
+min 2 inv,0 5 8
 sus4,0 5 7
 sus2,0 2 7
 b5,0 4 6
