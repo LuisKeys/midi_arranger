@@ -30,6 +30,10 @@ namespace midi_arranger.GUI
 
         public const double MID_PANEL_SIZE = 0.18;
         public const string MID_PANEL_NAME = "mid_panel";
+        public const double MID_PANEL_CONTENT_TOP_MARGIN = 0.1;
+        public const double MID_PANEL_CONTENT_RIGHT_LEFT_MARGIN = 0.005;
+        public const string TEMPO_LABEL_NAME = "tempo_label";
+        public const double TEMPO_LABEL_WIDTH = 0.235;
 
         public static Color EMPTY_VAR_COLOR = Color.Black;
         public static Color INTRO_VAR_COLOR = Color.FromArgb(1, 158, 255);
@@ -39,5 +43,9 @@ namespace midi_arranger.GUI
         public static Color FONT_COLOR = Color.White;
         public static Color STL_COLOR = Color.Black;
         public static Color STL_CURRENT_COLOR = Color.FromArgb(1, 158, 255);
+
+        public static Color VAR_PANEL_COLOR = Color.FromArgb(60, 1, 158, 255);
+        public static Color MID_PANEL_COLOR = Color.FromArgb(100, 1, 158, 255);
+        public static Color STL_PANEL_COLOR = Color.FromArgb(60, 1, 158, 255);
     }
 }

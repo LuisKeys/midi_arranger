@@ -36,7 +36,7 @@ namespace midi_arranger.GUI
             varPanel.Location = this.getVarPanelPosition(mainForm);
             varPanel.Size = this.GetVarPanelSize(mainForm);
             varPanel.TabIndex = 0;
-            varPanel.BackColor = Color.Black;
+            varPanel.BackColor = GUIConstants.VAR_PANEL_COLOR;
             varPanel.BorderStyle = BorderStyle.FixedSingle;
             mainForm.Controls.Add(varPanel);
         }

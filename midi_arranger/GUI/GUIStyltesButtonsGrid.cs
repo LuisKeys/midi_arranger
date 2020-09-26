@@ -11,7 +11,7 @@ namespace midi_arranger.GUI
 {
     public class GUIStyltesButtonsGrid
     {
-        public void AddStyleButtons(GUIManager guiManager, MainForm mainForm) 
+        public void AddStyleButtons(GUIManager guiManager, MainForm mainForm)
         {
             for (int i = 0; i < GUIConstants.STL_NUM_COLUMNS * GUIConstants.STL_NUM_ROWS; ++i)
             {
@@ -41,7 +41,7 @@ namespace midi_arranger.GUI
             stylePanel.Location = this.getStylePanelPosition(mainForm);
             stylePanel.Size = this.getStylePanelSize(mainForm);
             stylePanel.TabIndex = 0;
-            stylePanel.BackColor = Color.Black;
+            stylePanel.BackColor = GUIConstants.STL_PANEL_COLOR;
             stylePanel.BorderStyle = BorderStyle.FixedSingle;
             mainForm.Controls.Add(stylePanel);
         }
@@ -113,12 +113,11 @@ namespace midi_arranger.GUI
             Size varsPanelSize = guiVarButtonsGrid.GetVarPanelSize(mainForm);
 
             GUIMidArea guiMidArea = new GUIMidArea();
-            Size midPanelSize = guiMidArea.getTempoPanelSize(mainForm);
+            Size midPanelSize = guiMidArea.GetMidPanelSize(mainForm);
             int x = 0;
             int y = varsPanelSize.Height + midPanelSize.Height;
 
             return new Point(x, y);
         }
-
     }
 }

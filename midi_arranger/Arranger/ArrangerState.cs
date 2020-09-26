@@ -11,7 +11,7 @@ namespace midi_arranger.Arranger
         List<Style> _styles = new List<Style>();
         int[] _virtualKeyboard = new int[127];
         List<Chord> _chords = new List<Chord>();
-        int _tempo = 120;
+        int _tempo = 60;
 
         public int CurrentStyle { get => _currentStyle; set => _currentStyle = value; }
         public int CurrentVariation { get => _currentVariation; set => _currentVariation = value; }
@@ -43,6 +43,12 @@ namespace midi_arranger.Arranger
             }
             
 
+        }
+
+        public string GetFormatedTempo() 
+        {
+            string formattedTempo = Tempo.ToString().PadLeft(3, '0');
+            return formattedTempo;
         }
     }
 }
