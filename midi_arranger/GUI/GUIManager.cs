@@ -1,14 +1,6 @@
-﻿using midi_arranger.Arranger;
-using midi_arranger.GUI;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace midi_arranger.GUI
 {
@@ -71,8 +63,8 @@ namespace midi_arranger.GUI
             GUIStyltesButtonsGrid guiStyltesButtonsGrid = new GUIStyltesButtonsGrid();
             guiStyltesButtonsGrid.AddStyleButtons(this, mainForm);
 
-            GUIMidArea guiTempo = new GUIMidArea();
-            guiTempo.AddTempo(this, mainForm);
+            GUIMidArea guiTimeSignature = new GUIMidArea();
+            guiTimeSignature.AddMidRegions(this, mainForm);
 
             Button curStyleButton = (Button)MainForm.Controls.Find(GUIConstants.STL_BUTTON_NAME_PREFIX + 0, false)[0];
             curStyleButton.BackColor = GUIConstants.STL_CURRENT_COLOR;
@@ -86,8 +78,8 @@ namespace midi_arranger.GUI
             GUIStyltesButtonsGrid guiStyltesButtonsGrid = new GUIStyltesButtonsGrid();
             guiStyltesButtonsGrid.ResizeStyleButtons(this, mainForm);
 
-            GUIMidArea guiTempo = new GUIMidArea();
-            guiTempo.ResizeTempo(this, mainForm);
+            GUIMidArea guiTimeSignature = new GUIMidArea();
+            guiTimeSignature.ResizeMidRegions(this, mainForm);
         }
 
         public void StyleButton_Click(object sender, EventArgs e)

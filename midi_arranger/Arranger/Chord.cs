@@ -125,12 +125,12 @@ namespace midi_arranger.Arranger
 
         public int GetNoteIndexInOctave(string note) 
         {
-            string formatedNote = note;
-            if (formatedNote.Length == 1)
+            string formattedNote = note;
+            if (formattedNote.Length == 1)
             {
-                formatedNote += " ";
+                formattedNote += " ";
             }
-            int noteIndex = NOTES_NAMES_LIST.IndexOf(formatedNote) / 2;
+            int noteIndex = NOTES_NAMES_LIST.IndexOf(formattedNote) / 2;
 
             return noteIndex;
         }

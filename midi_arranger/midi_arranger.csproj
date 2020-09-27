@@ -53,6 +53,9 @@
     <Compile Include="Arranger\ArrangerState.cs" />
     <Compile Include="Arranger\Chord.cs" />
     <Compile Include="Arranger\ChordReader.cs" />
+    <Compile Include="GUI\GUIBeatCard.cs" />
+    <Compile Include="GUI\GUIChordCard.cs" />
+    <Compile Include="GUI\GUITempoCard.cs" />
     <Compile Include="Arranger\MidiManager.cs" />
     <Compile Include="Arranger\Style.cs" />
     <Compile Include="Arranger\StyleReader.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="GUI\GUIManager.cs" />
     <Compile Include="GUI\GUIStyltesButtonsGrid.cs" />
     <Compile Include="GUI\GUIMidArea.cs" />
+    <Compile Include="GUI\GUITimeSignatureCard.cs" />
     <Compile Include="GUI\GUIVarButtonsGrid.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

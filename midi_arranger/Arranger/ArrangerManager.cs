@@ -19,9 +19,9 @@ namespace midi_arranger.Arranger
             try
             {
                 this._arrangerState = arrangerState;
-                this.MidiManager = new MidiManager();
-                this.MidiManager.InputDevice.EventReceived += InputDevice_EventReceived; ;
-                this.MidiManager.InputDevice.StartEventsListening();
+                //this.MidiManager = new MidiManager();
+                //this.MidiManager.InputDevice.EventReceived += InputDevice_EventReceived; ;
+                //this.MidiManager.InputDevice.StartEventsListening();
             }
             catch (Exception e)
             {
@@ -43,8 +43,8 @@ namespace midi_arranger.Arranger
 
         public void closeDevices()
         {
-            this.MidiManager.InputDevice.StartEventsListening();
-            this.MidiManager.InputDevice.Dispose();
+            //this.MidiManager.InputDevice.StartEventsListening();
+            //this.MidiManager.InputDevice.Dispose();
         }
 
         private void InputDevice_EventReceived(object sender, Melanchall.DryWetMidi.Devices.MidiEventReceivedEventArgs e)
